@@ -1,0 +1,75 @@
+<html>
+
+<head>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css">
+</head>
+
+<body>
+
+  <div id="app" class="ui container">
+    <h1>Notifcation Center</h1>
+
+
+
+    <notification-message type="error" header="Oh no!">
+      <p>Your flight has been <b>canceled</b>!</p>
+    </notification-message>
+
+    <notification-message type="success" header="Oh yeah!">
+      <p>Your flight is on time</p>
+    </notification-message>
+
+    <notification-message>
+      Good Morning
+    </notification-message>
+
+  </div>
+
+  <!-- Template for Notification Message -->
+  <script type="text/x-template" id="notification-message-template">
+    <!-- Notification Message Markup -->
+    <!-- Types: info, warning, error, success -->
+    <div class="ui message" :class="type" v-if="!hidden">
+        <i class="close icon" @click="hide"></i>
+        <div class="header">
+          {{header}}
+        </div>
+        <slot></slot>
+      </div>
+  </script>
+
+  <!-- Import Vue.js -->
+  <script src="https://unpkg.com/vue"></script>
+
+  <!-- Your JavaScript Code :) -->
+  <script>
+    Vue.component('notification-message', {
+      template: '#notification-message-template',
+      props: {
+        type: {
+          type: String,
+          default: 'info'
+        },
+        header: {
+          type: String,
+          default: 'Information'
+        }
+      },
+      data() {
+        return {
+          hidden: false
+        }
+      },
+      methods: {
+        hide() {
+          this.hidden = true
+        }
+      }
+    })
+    new Vue({
+      el: '#app'
+    })
+  </script>
+</body>
+
+</html>
