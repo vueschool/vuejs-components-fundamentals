@@ -23,7 +23,8 @@
 
   <script type="text/x-template" id="plan-picker-template">
     <div class="plans">
-      <plan-picker-item v-for="plan in plans" :name="plan" @select="selectPlan" :selected-plan="selectedPlan"></plan>
+      <plan-picker-item v-for="plan in plans" :name="plan" @select="selectPlan" :selected-plan="selectedPlan">
+      </plan-picker-item>
     </div>
   </script>
 
